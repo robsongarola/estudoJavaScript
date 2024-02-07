@@ -31,3 +31,4 @@ function total(...numeros){ // O OPERADOR REST CRIA UM ARRAY DE ELEMENTOS
 }
 console.log(total(2,3,4,5))
 
+

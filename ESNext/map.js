@@ -17,4 +17,5 @@ const chavesVariadas= new Map([
 
 chavesVariadas.forEach((vl,ch)=>{
     console.log(ch,vl)
+    
 })

@@ -1,4 +1,4 @@
-// COM PROMISE...
+// USANDO ASYNC/AWAIT
 const http= require('http'); // IMPORTANDO DA BIBLIOTECA NODE O MODULO 'HTTP'
 
 const getTurma= letra => {
@@ -28,26 +28,22 @@ const getTurma= letra => {
     })
 
  }) 
-
-
 }
+// RECURSO DO ES8
+// TENDO O OBJETIVO DE SIMPLIFICAR O USO DE PROMISES...
 
-let nomes=[]
-getTurma("A")
-    .then(alunos => { nomes = nomes.concat(alunos.map( a => a.nome)) 
-getTurma("B")
-    .then(alunos => { nomes = nomes.concat(alunos.map( a => a.nome)) 
-getTurma("C")
-    .then(alunos => { nomes = nomes.concat(alunos.map( a => a.nome)) 
-      console.log(nomes)    
-})
-})
-})
+/*PRIMEIRAMENTE CRIAREMOS UMA FUNÇÃO QUE MARCAREMOS COM ASYNC*/
 
-// UMA FORMA AINDA MAIS ORGANIZADA
+const obterTurma = async () => {
 
-Promise.all([getTurma('A'),getTurma('B'),getTurma('C')]) // AQI É PARALELO
-          .then(turmas => [].concat(...turmas))
-          .then(alunos => alunos.map( a => a.nome))
-          .then( alunos=>console.log(alunos))
-          .catch( e => console.log(e.mensage))
+    const TA = await getTurma('A');
+    const TB = await getTurma('B');
+    const TC = await getTurma('C');
+
+    return [].concat(TA,TB,TC)
+
+} // RETORNA UM OBJETO ASYNCFUNCTION
+
+obterTurma()
+        .then( alunos => alunos.map( aluno => aluno.nome))
+        .then( nomes => console.log(nomes))

@@ -3,19 +3,22 @@
 
 
 function falarDepoisDe(segundos){
-    return new Promise(resolve=> setTimeout(()=> resolve() ,segundos))
+    return new Promise(resolve=> setTimeout(()=> resolve(10) ,segundos))
 }
 
 // NECESSARIAMENTE A PALAVRA RESERVADA ASYNC TRABALHA MARCANDO UMA FUNÇÃO SINCRONA
 
 async function chamarFuncao(){
+    
+    let valor = await falarDepoisDe(100)
+    await falarDepoisDe(1500)
+    console.log(`Async/ Await ${valor+1}...` )
+    await falarDepoisDe(1500)
+    console.log(`Async/ Await ${valor+2}` )
+    await falarDepoisDe(1500)
+    console.log(`Async/ Await ${valor+3}` )
 
-    await falarDepoisDe(1500)
-    console.log(`Async/ Await 1...` )
-    await falarDepoisDe(1500)
-    console.log(`Async/ Await 2....` )
-    await falarDepoisDe(1500)
-    console.log(`Async/ Await 3....` )
+    return valor+3 //(se quiser retornar o valor puramente, sem o assincronimos da promise tem que usar o then)
 }
 
-chamarFuncao()
+chamarFuncao().then(console.log) // SAINDO DO ASSINCRONISMO

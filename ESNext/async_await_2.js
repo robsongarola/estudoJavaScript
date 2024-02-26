@@ -20,10 +20,9 @@ return new Promise((resolve,reject)=>{
 
 // USANDO O TRATAMENTO DE ERRO COM ASYNC/AWAIT
 
-async function gerarMegaSena(qtdeNumeros){
+async function gerarMegaSena(qtdeNumeros, tentativas=1){
    
     try{
-
 
         const numeros =[];
     
@@ -36,7 +35,15 @@ async function gerarMegaSena(qtdeNumeros){
 
     } catch(e){
 
-        throw "Que chato !!"
+        if(tentativas > 10){
+
+            throw "Quantidade de tentativas em exesso"
+        }else{
+
+            gerarMegaSena(qtdeNumeros, tentativas+1)
+        }
+
+         
     }
 }
 
